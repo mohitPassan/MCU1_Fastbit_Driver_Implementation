@@ -1,0 +1,72 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.icloud
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# Eclipse / STM32CubeIDE metadata (user/machine specific)
+.metadata/
+.settings/
+.recommenders/
+.localhistory/
+.externalToolBuilders/
+.loadpath
+
+# Eclipse project files (often user-specific; uncomment to track if desired)
+.project
+.cproject
+
+# Build output directories
+Debug/
+Release/
+build/
+out/
+
+# Compiled objects and deps
+*.o
+*.obj
+*.d
+*.su
+
+# Assembly and listings
+*.s
+*.asm
+*.lst
+*.list
+
+# Linker/Map outputs
+*.map
+
+# Firmware images / binaries
+*.elf
+*.axf
+*.out
+*.hex
+*.bin
+*.srec
+
+# Static analysis / coverage / cyclomatic complexity byproducts
+*.cyclo
+
+# Crash logs / misc
+*.log
+core
+*.bak
+*.tmp
+*~
+
+# Windows noise
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Debug symbol bundles (macOS)
+*.dSYM/
+
+# Launch configurations (exportable but typically user-specific)
+*.launch
