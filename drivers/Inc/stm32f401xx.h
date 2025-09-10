@@ -178,7 +178,27 @@ typedef struct {
 #define SPI1_REG_RESET()		do {(RCC -> APB2RSTR |= (1 << 12)); (RCC -> AHB1RSTR &= ~(1 << 12));}while(0)
 #define SPI2_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 14)); (RCC -> AHB1RSTR &= ~(1 << 14));}while(0)
 #define SPI3_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 15)); (RCC -> AHB1RSTR &= ~(1 << 15));}while(0)
-#define SPI4_REG_RESET()		do {(RCC -> APB2RSTR |= (1 << 13)); (RCC -> AHB1RSTR &= ~(1 << 13));}while(0)
+#define SPI4_REG_RESET()
+
+/*
+ * SPI peripheral bit position macros
+ */
+// CR1
+#define SPI_CR1_CPHA			0
+#define SPI_CR1_CPOL			1
+#define SPI_CR1_MSTR			2
+#define SPI_CR1_BR				3
+#define SPI_CR1_SPE				6
+#define SPI_CR1_LSBFIRST		7
+#define SPI_CR1_SSI				8
+#define SPI_CR1_SSM				9
+#define SPI_CR1_RXONLY			10
+#define SPI_CR1_DFF				11
+#define SPI_CR1_CRCNEXT			12
+#define SPI_CR1_CRCEN			13
+#define SPI_CR1_BIDIOE			14
+#define SPI_CR1_BIDIMODE		15
+
 
 #include "stm32f401xx_spi_driver.h"
 
