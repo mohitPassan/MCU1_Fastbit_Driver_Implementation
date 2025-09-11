@@ -8,6 +8,19 @@
 #include "../Inc/stm32f401xx_spi_driver.h"
 
 /*
+ * Function to get the status of the flag
+ */
+uint8_t SPI_GetFlagStatus(SPI_RegDef_t *pSPIx, uint32_t flagName)
+{
+	if(pSPIx -> SR & flagName)
+	{
+		return FLAG_SET;
+	}
+
+	return FLAG_RESET;
+}
+
+/*
  * Peripheral clock control
  */
 void SPI_PeriClockControl(SPI_RegDef_t *pSPIx, uint8_t EnorDi)
@@ -115,10 +128,26 @@ void SPI_DeInit(SPI_RegDef_t *pSPIx)
  * @param[*pSPIx]		-	base address of the SPI peripheral
  * @param[*pTxBuffer]	-	base address of the data
  * @param[len]			-	length of the data
+ * @note				-	This is a blocking call or polling based
  */
 void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t len)
 {
-
+	while(len > 0)
+	{
+		while(SPI_GetFlagStatus(pSPIx, SPI_TXE_FLAG) == FLAG_RESET);
+		if(pSPIx->CR1 & (1 << SPI_CR1_DFF))
+		{
+			pSPIx->DR = *(uint16_t*)pTxBuffer;
+			len--;
+			len--;
+			(uint16_t*)pTxBuffer++;
+		} else
+		{
+			pSPIx->DR = *pTxBuffer;
+			len--;
+			pTxBuffer++;
+		}
+	}
 }
 
 

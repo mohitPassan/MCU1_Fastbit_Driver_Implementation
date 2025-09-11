@@ -141,6 +141,8 @@ typedef struct {
 #define RESET 					DISABLE
 #define GPIO_PIN_SET			SET
 #define GPIO_PIN_RESET			RESET
+#define FLAG_RESET				RESET
+#define FLAG_SET				SET
 
 #include "stm32f401xx_gpio_driver.h"
 
@@ -198,6 +200,18 @@ typedef struct {
 #define SPI_CR1_CRCEN			13
 #define SPI_CR1_BIDIOE			14
 #define SPI_CR1_BIDIMODE		15
+
+// SR
+#define SPI_SR_RXNE				0
+#define SPI_SR_TXE				1
+#define SPI_SR_CHSIDE			2
+#define SPI_SR_UDR				3
+#define SPI_SR_CRCERR			4
+#define SPI_SR_MODF				5
+#define SPI_SR_OVR				6
+#define SPI_SR_BSY				7
+#define SPI_SR_FRE				8
+
 
 
 #include "stm32f401xx_spi_driver.h"
