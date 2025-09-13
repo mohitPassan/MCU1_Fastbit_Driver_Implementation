@@ -53,6 +53,11 @@ void SPI_IRQConfig(uint8_t IRQNumber, uint8_t IRQPriority, uint8_t EnorDi);
 void SPI_IRQHandling(SPI_Handle_t *pHandle);
 
 /*
+ * Enable or disable SPI peripheral
+ */
+void SPI_Peripheral_Control(SPI_RegDef_t *pSPIx, uint8_t EnOrDi);
+
+/*
  * @SPI_DeviceMode
  */
 #define SPI_DEVICE_MODE_MASTER				1
