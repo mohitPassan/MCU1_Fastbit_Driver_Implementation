@@ -12,7 +12,7 @@
  */
 uint8_t SPI_GetFlagStatus(SPI_RegDef_t *pSPIx, uint32_t flagName)
 {
-	if(pSPIx -> SR & flagName)
+	if(pSPIx->SR & flagName)
 	{
 		return FLAG_SET;
 	}
@@ -137,13 +137,13 @@ void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t len)
 {
 	while(len > 0)
 	{
-		while(SPI_GetFlagStatus(pSPIx, SPI_TXE_FLAG) == FLAG_RESET);
+		// while(SPI_GetFlagStatus(pSPIx, SPI_TXE_FLAG) == FLAG_RESET);
+		while(!((pSPIx->SR) & (1 << SPI_SR_TXE)));
 		if(pSPIx->CR1 & (1 << SPI_CR1_DFF))
 		{
 			pSPIx->DR = *(uint16_t*)pTxBuffer;
-			len--;
-			len--;
-			(uint16_t*)pTxBuffer++;
+			len -= 2;
+			pTxBuffer += 2;
 		} else
 		{
 			pSPIx->DR = *pTxBuffer;
@@ -163,7 +163,21 @@ void SPI_Peripheral_Control(SPI_RegDef_t *pSPIx, uint8_t EnOrDi)
 		pSPIx -> CR1 |= (1 << SPI_CR1_SPE);
 	} else
 	{
-		pSPIx -> CR1 &= ~(0 << SPI_CR1_SPE);
+		pSPIx -> CR1 &= ~(1 << SPI_CR1_SPE);
+	}
+}
+
+/*
+ * Enable or disable SSI bit
+ */
+void SPI_SSI_Control(SPI_RegDef_t *pSPIx, uint8_t EnOrDi)
+{
+	if(EnOrDi == ENABLE)
+	{
+		pSPIx -> CR1 |= (1 << SPI_CR1_SSI);
+	} else
+	{
+		pSPIx -> CR1 &= ~(1 << SPI_CR1_SSI);
 	}
 }
 

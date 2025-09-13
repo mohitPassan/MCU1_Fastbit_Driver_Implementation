@@ -58,6 +58,12 @@ void SPI_IRQHandling(SPI_Handle_t *pHandle);
 void SPI_Peripheral_Control(SPI_RegDef_t *pSPIx, uint8_t EnOrDi);
 
 /*
+ * Enable or disable SSI bit
+ */
+void SPI_SSI_Control(SPI_RegDef_t *pSPIx, uint8_t EnOrDi);
+
+
+/*
  * @SPI_DeviceMode
  */
 #define SPI_DEVICE_MODE_MASTER				1

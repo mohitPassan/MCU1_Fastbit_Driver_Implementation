@@ -149,6 +149,7 @@ typedef struct {
 // SPI register definition
 typedef struct {
 	__vo uint32_t CR1;
+	__vo uint32_t CR2;
 	__vo uint32_t SR;
 	__vo uint32_t DR;
 	__vo uint32_t CRCPR;
@@ -171,16 +172,16 @@ typedef struct {
 #define SPI4_PCLK_EN()			(RCC -> APB2ENR |= (1 << 13))
 
 // SPIx clock disable macros
-#define SPI1_PCLK_DI()			(RCC -> AHB1ENR &= ~(1 << 12))
-#define SPI2_PCLK_DI()			(RCC -> AHB1ENR &= ~(1 << 14))
-#define SPI3_PCLK_DI()			(RCC -> AHB1ENR &= ~(1 << 15))
-#define SPI4_PCLK_DI()			(RCC -> AHB1ENR &= ~(1 << 13))
+#define SPI1_PCLK_DI()			(RCC -> APB2ENR &= ~(1 << 12))
+#define SPI2_PCLK_DI()			(RCC -> APB1ENR &= ~(1 << 14))
+#define SPI3_PCLK_DI()			(RCC -> APB1ENR &= ~(1 << 15))
+#define SPI4_PCLK_DI()			(RCC -> APB2ENR &= ~(1 << 13))
 
 // SPIx port reset macros
-#define SPI1_REG_RESET()		do {(RCC -> APB2RSTR |= (1 << 12)); (RCC -> AHB1RSTR &= ~(1 << 12));}while(0)
-#define SPI2_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 14)); (RCC -> AHB1RSTR &= ~(1 << 14));}while(0)
-#define SPI3_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 15)); (RCC -> AHB1RSTR &= ~(1 << 15));}while(0)
-#define SPI4_REG_RESET()
+#define SPI1_REG_RESET()		do {(RCC -> APB2RSTR |= (1 << 12)); (RCC -> APB2RSTR &= ~(1 << 12));}while(0)
+#define SPI2_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 14)); (RCC -> APB1RSTR &= ~(1 << 14));}while(0)
+#define SPI3_REG_RESET()		do {(RCC -> APB1RSTR |= (1 << 15)); (RCC -> APB1RSTR &= ~(1 << 15));}while(0)
+#define SPI4_REG_RESET()		do {(RCC -> APB2RSTR |= (1 << 13)); (RCC -> APB2RSTR &= ~(1 << 13));}while(0)
 
 /*
  * SPI peripheral bit position macros

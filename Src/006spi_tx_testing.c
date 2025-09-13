@@ -62,12 +62,17 @@ void SPI1_Inits(void)
 
 int main(void)
 {
-	char user_data[] = "Hello, world!";
+	char user_data[] = "Hello world";
 
 	SPI1_GPIO_Inits();
 	SPI1_Inits();
+	SPI_SSI_Control(SPI1, ENABLE);
 
 	SPI_Peripheral_Control(SPI1, ENABLE);
+
 	SPI_SendData(SPI1, (uint8_t*)user_data, strlen(user_data));
+
+	while(1);
+
 	return 0;
 }
